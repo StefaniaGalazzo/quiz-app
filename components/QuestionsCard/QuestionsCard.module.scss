@@ -1,0 +1,25 @@
+.QuestionsCard{
+    background-color: #f1f1f1;
+    padding: 30px 50px;
+    border-radius: 20px;
+    display: flex;
+    .question, .answers{
+        display: flex;
+        flex-direction: column;
+    }
+    .question{
+        max-width: 300px;
+    }
+    .answers{
+        padding: 30px;
+        button{
+            margin-bottom: 20px;
+            background-color: rgb(31, 61, 158);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+}
