@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Start from '../components/StartPage/start'
 import styles from '../styles/Home.module.css'
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -15,7 +16,6 @@ export default function Home() {
         <Start />
       </main>
 
-     
     </div>
-  )
+  );
 }
