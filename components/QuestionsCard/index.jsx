@@ -29,7 +29,7 @@ export default function QuestionsCard({
                 <p>{question}</p>
             </div>
             <div className={styles.answers}>
-                {answers.map(answer => <button>{answer.text}</button>)}
+                {answers.map(answer => <button key={questionID}>{answer.text}</button>)}
             </div>
         </div>
     )
