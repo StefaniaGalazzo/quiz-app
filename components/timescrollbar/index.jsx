@@ -4,7 +4,7 @@ export default function TimeScrollBar() {
   const timeTot = 30;
   const dividendo = 100 / timeTot;
 
-  const timeDyn = 20; //questo è il tempo che passa che prenderemo dallo store
+  const timeDyn = 17; //questo è il tempo che passa che prenderemo dallo store
   const timePast = timeDyn * dividendo;
 
   const styleBar = {
