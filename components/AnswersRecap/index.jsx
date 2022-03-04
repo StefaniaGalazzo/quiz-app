@@ -2,9 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import styles from "./AnswersRecap.module.scss";
 
-
 const AnswersRecap = () => {
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
+  const questionId = useSelector((state) => state.questionId);
   const punti = useSelector((state) => state.point);
   const router = useRouter();
 
@@ -15,23 +16,27 @@ const AnswersRecap = () => {
   return (
     <div className={styles.main}>
       <div className={styles.column}>
-        <h3 className={styles.title}>Le tue risposte:</h3>
+        <h3 className={styles.title}>Il tuo punteggio:</h3>
         <h2>{punti}/8</h2>
-        {/* <ul>
-          <li>570 a.C.</li>
-        </ul>
-        <ul>
-        {data.map((data) => (
-            <li
-            key={data.id}
-            styles={correct ? { color: "#53DBAB" } : { color: "#D43E2A" }}
-            >
-            {props.text}
-            </li>
-            ))}
-        </ul> */}
+
+        {/* <div>
+          {data[questionId].answers.map((answer, id) => (
+            <div key={id}>
+              {answer.correct === true ? (
+                <p className={styles.correct}>
+                  {answer.text}
+                  {console.log(punti)}
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+          ))}
+        </div> */}
       </div>
-      <button onClick={handleClickRestart}>Gioca Ancora</button>
+      <button className={styles.restartBtn} onClick={handleClickRestart}>
+        Gioca Ancora
+      </button>
     </div>
   );
 };
