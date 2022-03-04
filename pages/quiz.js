@@ -7,7 +7,7 @@ export default function Quiz() {
   return (
     <div className={style.container}>
       <QuestionsCard />
-      {/* <TimeScrollBar /> */}
+      {/* <TimeScrollBar />*/}
     </div>
   )
 }
