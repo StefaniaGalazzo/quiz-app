@@ -4,7 +4,7 @@ const initState = {
   data: data,
   // time: 30,
   point: 0,
-  questionId: 0
+  questionId: 0,
 };
 
 const myReducer = (state = initState, action) => {
@@ -14,17 +14,17 @@ const myReducer = (state = initState, action) => {
     //     ...state,
     //     time: action.payload
     //   };
-    case 'incrementPoint':
+    case "incrementPoint":
       return {
         ...state,
-        point: state.point + 1
+        point: state.point + 1,
       };
-    case 'changeQuestion':
+    case "changeQuestion":
       return {
         ...state,
         questionId: action.payload,
       };
-    
+
     default:
       return state;
   }
