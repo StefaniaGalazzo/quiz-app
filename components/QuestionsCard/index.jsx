@@ -13,17 +13,17 @@ export default function QuestionsCard() {
   const [time, setTime] = useState(30);
   const questionNum = useSelector((state) => state.questionId);
   const dispatch = useDispatch();
- const ref = useRef(null);
+  const ref = useRef(null);
 
- const clear = () => {
-   window.clearInterval(ref.current);
- }
+  const clear = () => {
+    window.clearInterval(ref.current);
+  };
 
   const resetTime = () => {
-    setTime(30)
-  }
+    setTime(30);
+  };
 
-//  const [intervalState, setIntervalState] = useState(30);
+  //  const [intervalState, setIntervalState] = useState(30);
 
   // const [questionNum, setQuestionNum] = useState(0);
 
@@ -41,46 +41,37 @@ export default function QuestionsCard() {
   // useEffect(() => {
   //   setTimeout(() => {
   //     setTime(time-1);
-     
-    
+
   //     if (time === 0)  {
   //       // dispatch(decrementTime(time));
   //       dispatch(changeQuestion(questionNum + 1));
   //       resetTime();
-  //     } 
+  //     }
   //   }, 1000)
   //   console.log(time);
   // }, [time]);
 
-  useEffect(()=>{
-    ref.current=window.setInterval(()=>{
-     setTime((time)=>time-1)
-   },1000)
-   return ()=>clear();
- },[])
+  useEffect(() => {
+    ref.current = window.setInterval(() => {
+      setTime((time) => time - 1);
+    }, 1000);
+    return () => clear();
+  }, []);
 
- useEffect(()=>{
-   if(time===0){
-     dispatch(changeQuestion(questionNum + 1));
-     resetTime()
-   }
+  useEffect(() => {
+    if (time === 0) {
+      dispatch(changeQuestion(questionNum + 1));
+      resetTime();
+    }
+  }, [time]);
 
- },[time])
-  
+  // dispatch(decrementTime(time));
 
-    
-
-    // dispatch(decrementTime(time));
-    
-
-    
-  
   function isCorrect() {
     dispatch(changeQuestion(questionNum + 1));
     dispatch(incrementPoint);
     // dispatch(decrementTime(time));
     resetTime();
-    
   }
   function isWrong() {
     dispatch(changeQuestion(questionNum + 1));
@@ -92,7 +83,7 @@ export default function QuestionsCard() {
     <div className={styles.QuestionsCard}>
       <div className={styles.question}>
         <h1>Domanda n° {questionNum + 1}/8</h1>
-        <p>{data[questionNum].question}</p>
+        {data[questionNum].question ? <p>{data[questionNum].question}</p> : ""}
       </div>
       <div className={styles.answers}>
         {data[questionNum].answers.map((answer, id) => (
