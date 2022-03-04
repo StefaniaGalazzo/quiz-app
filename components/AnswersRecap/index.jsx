@@ -1,14 +1,26 @@
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import styles from "./AnswersRecap.module.scss";
 
-const AnswersRecap = (props) => {
+
+const AnswersRecap = () => {
+  const dispatch = useDispatch();
+  const punti = useSelector((state) => state.point);
+  const router = useRouter();
+
+  const handleClickRestart = () => {
+    router.push(`/`);
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.column}>
         <h3 className={styles.title}>Le tue risposte:</h3>
-        <ul>
+        <h2>{punti}/8</h2>
+        {/* <ul>
           <li>570 a.C.</li>
         </ul>
-        {/* <ul>
+        <ul>
         {data.map((data) => (
             <li
             key={data.id}
@@ -19,6 +31,7 @@ const AnswersRecap = (props) => {
             ))}
         </ul> */}
       </div>
+      <button onClick={handleClickRestart}>Gioca Ancora</button>
     </div>
   );
 };

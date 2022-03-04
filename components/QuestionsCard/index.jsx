@@ -6,6 +6,8 @@ import {
   incrementPoint,
   changeQuestion,
 } from "../../store/action";
+import { useRouter } from "next/router";
+
 
 export default function QuestionsCard() {
   const data = useSelector((state) => state.data);
@@ -13,77 +15,68 @@ export default function QuestionsCard() {
   const [time, setTime] = useState(30);
   const questionNum = useSelector((state) => state.questionId);
   const dispatch = useDispatch();
-  const ref = useRef(null);
+ const ref = useRef(null);
+ const router = useRouter();
 
-  const clear = () => {
-    window.clearInterval(ref.current);
-  };
+
+ const clear = () => {
+   window.clearInterval(ref.current);
+ }
 
   const resetTime = () => {
-    setTime(30);
-  };
+    setTime(30)
+  }
 
-  //  const [intervalState, setIntervalState] = useState(30);
 
-  // const [questionNum, setQuestionNum] = useState(0);
+  useEffect(()=>{
+    ref.current=window.setInterval(()=>{
+     setTime((time)=>time-1)
+   },1000)
+   return ()=>clear();
+ },[])
 
-  // setIntervalState(
-  //   setInterval(() => {
-  //     timer--;
-  //     dispatch(decrementTime(timer));
-  //     console.log(timer);
-  //     if (timer === 0) {
-  //       timer = 30;
-  //     }
-  //   }, 1000)
-  // );
+ useEffect(()=>{
+   if(time===0){
+     dispatch(changeQuestion(questionNum + 1));
+     resetTime()
+   }
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setTime(time-1);
+ },[time])
+  
 
-  //     if (time === 0)  {
-  //       // dispatch(decrementTime(time));
-  //       dispatch(changeQuestion(questionNum + 1));
-  //       resetTime();
-  //     }
-  //   }, 1000)
-  //   console.log(time);
-  // }, [time]);
-
-  useEffect(() => {
-    ref.current = window.setInterval(() => {
-      setTime((time) => time - 1);
-    }, 1000);
-    return () => clear();
-  }, []);
-
-  useEffect(() => {
-    if (time === 0) {
-      dispatch(changeQuestion(questionNum + 1));
-      resetTime();
-    }
-  }, [time]);
-
-  // dispatch(decrementTime(time));
-
+    // dispatch(decrementTime(time));
+    
   function isCorrect() {
+    if (questionNum < 7) {
     dispatch(changeQuestion(questionNum + 1));
     dispatch(incrementPoint);
     // dispatch(decrementTime(time));
     resetTime();
+  } 
+  else {
+    dispatch(incrementPoint);
+
+    router.push(`/answersrecap`);
+
+  }
+    
   }
   function isWrong() {
+    if (questionNum < 7) {
     dispatch(changeQuestion(questionNum + 1));
     // dispatch(decrementTime(time));
     resetTime();
+    } 
+    else {
+      router.push(`/answersrecap`);
+    }
   }
 
   return (
     <div className={styles.QuestionsCard}>
       <div className={styles.question}>
-        <h1>Domanda n° {questionNum + 1}/8</h1>
-        {data[questionNum].question ? <p>{data[questionNum].question}</p> : ""}
+        <h1>Domanda n° { questionNum + 1 }/8</h1>
+        <p>{data[questionNum].question}</p>
       </div>
       <div className={styles.answers}>
         {data[questionNum].answers.map((answer, id) => (
@@ -95,4 +88,3 @@ export default function QuestionsCard() {
       {time}
     </div>
   );
-}
