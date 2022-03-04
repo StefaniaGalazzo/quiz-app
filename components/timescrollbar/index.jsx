@@ -1,8 +1,9 @@
 // import style from "./timescrollbar.module.scss";
 // import { useSelector } from "react-redux";
 
-// export default function TimeScrollBar() {
-//   const timeDyn = useSelector((state) => state.time);
+// export default function TimeScrollBar(time) {
+// //   const timeDyn = useSelector((state) => state.time);
+    
 //   const timeTot = 30;
 //   const dividendo = 100 / timeTot;
 

@@ -12,8 +12,6 @@ const Start = () => {
 
   const handleClick = () => {
     router.push(`/quiz`);
-
-
   };
 
  
