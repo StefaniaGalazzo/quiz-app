@@ -76,7 +76,7 @@ export default function QuestionsCard() {
     <div className={styles.QuestionsCard}>
       <div className={styles.question}>
         <h1>Domanda n° { questionNum + 1 }/8</h1>
-        <p>data[questionNum].question</p>
+        <p>{data[questionNum].question}</p>
       </div>
       <div className={styles.answers}>
         {data[questionNum].answers.map((answer, id) => (
