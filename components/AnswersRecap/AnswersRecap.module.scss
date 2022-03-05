@@ -5,7 +5,9 @@
   flex-direction: column;
   gap: 15px;
   color: white;
+  text-align: center;
   .column {
+   
     ul {
       list-style: none;
       background-color: rgba(230, 230, 230, 0.781);
@@ -26,6 +28,8 @@
     color: white;
     font-size: 16px;
     margin-top: 30px;
+    transition: all 0.25s;
+    cursor: pointer;
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
     }
